@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import FooterLogo from '../assets/logo-images/footer-logo.png';
@@ -9,170 +9,183 @@ const Nav = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: black;
-  padding: 10px 20px;
+  background-color: #111;
+  padding: 10px 16px;
+  position: relative;
+  z-index: 100;
 `;
 
-const MenuIcon = styled.div`
+const MenuIcon = styled.button`
   color: white;
   cursor: pointer;
+  background: none;
+  border: none;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
 `;
 
 export const PhoneNavbar: React.FC = () => {
   const [show, setShow] = useState<boolean>(false);
 
-  window.onresize = function (): void {
-    if (window.innerWidth > 768) {
-      setShow(false);
-    }
-  };
+  useEffect(() => {
+    const handleResize = (): void => {
+      if (window.innerWidth > 768) {
+        setShow(false);
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <Nav>
-      <MenuIcon className="material-icons" onClick={() => setShow(!show)}>
-        {show ? 'close' : 'menu'}
+      <MenuIcon onClick={() => setShow(!show)} aria-label="Toggle menu">
+        <span className="material-icons">{show ? 'close' : 'menu'}</span>
       </MenuIcon>
-      <img src={NavbarLogo} alt="sabay news logo" height="40px" />
-      <img src={GifLogo} alt="media sabay logo" height="40px" />
-      <Drawer show={show} />
+      <img src={NavbarLogo} alt="sabay news logo" height="38px" />
+      <img src={GifLogo} alt="media sabay logo" height="38px" />
+      <Drawer show={show} onClose={() => setShow(false)} />
     </Nav>
   );
 };
 
-const Container = styled.div<{ show: boolean }>`
-  background-color: black;
+const DrawerContainer = styled.div<{ show: boolean }>`
+  background-color: #1a1a1a;
   position: absolute;
-  left: 0px;
-  right: 0px;
-  top: 60px;
-  transform: ${(prop) => (prop.show ? 'translateY(0%)' : 'translateY(-125%)')};
-  transition: 0.25s;
-  z-index: 10;
+  left: 0;
+  right: 0;
+  top: 100%;
+  transform: ${(prop) => (prop.show ? 'translateY(0)' : 'translateY(-110%)')};
+  opacity: ${(prop) => (prop.show ? '1' : '0')};
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  z-index: 99;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 `;
 
-const ActiveHome = styled.div`
-  width: 100%;
+const HomeLink = styled.div`
   background-color: #d90c16;
-  color: white;
-  font-size: 20px;
+  padding: 4px 0px;
 `;
 
 const Menu = styled.div`
   display: flex;
-  align-items: start;
 `;
 
 const SubMenu = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: start;
   width: 50%;
-  color: white;
-`;
-
-const ResItem = styled.div<{ hide: boolean }>`
-  background-color: #fa1939;
-  padding: 0px;
-  width: 100%;
-  display: ${(prop) => (prop.hide ? 'none' : 'block')};
-`;
-
-const ResSubItem = styled.div`
-  padding: 8px 10px;
-  border-bottom: 1px solid #eee;
-  &:hover {
-    background-color: #d90c16;
+  border-right: 1px solid #2a2a2a;
+  &:last-child {
+    border-right: none;
   }
 `;
 
-const FooterDrawer = styled.div`
-  padding: 10px;
-  text-align: center;
+const NavLink = styled(Link)`
+  color: #e0e0e0;
+  text-decoration: none;
+  padding: 13px 16px;
+  display: block;
+  font-size: 14px;
+  border-bottom: 1px solid #2a2a2a;
+  &:hover {
+    background-color: #d90c16;
+    color: white;
+  }
 `;
 
-const linkStyle: React.CSSProperties = {
-  color: 'white',
-  textDecoration: 'none',
-  cursor: 'pointer',
-  padding: '10px 15px',
-};
+const ExpandItem = styled.div<{ hide: boolean }>`
+  background-color: #222;
+  display: ${(prop) => (prop.hide ? 'none' : 'block')};
+`;
+
+const ExpandLink = styled(Link)`
+  color: #ccc;
+  text-decoration: none;
+  padding: 11px 20px;
+  display: block;
+  font-size: 13px;
+  border-bottom: 1px solid #2a2a2a;
+  &:hover {
+    background-color: #d90c16;
+    color: white;
+  }
+`;
+
+const MoreButton = styled.button`
+  background: none;
+  border: none;
+  color: #e0e0e0;
+  padding: 13px 16px;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #2a2a2a;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  &:hover {
+    background-color: #d90c16;
+    color: white;
+  }
+`;
+
+const DrawerFooter = styled.div`
+  padding: 12px;
+  text-align: center;
+  border-top: 1px solid #2a2a2a;
+`;
 
 interface DrawerProps {
   show: boolean;
+  onClose: () => void;
 }
 
-export const Drawer: React.FC<DrawerProps> = ({ show }) => {
-  const [hide, setHide] = useState<boolean>(true);
+export const Drawer: React.FC<DrawerProps> = ({ show, onClose }) => {
+  const [expanded, setExpanded] = useState<boolean>(false);
 
   return (
-    <Container show={show}>
-      <ActiveHome>
-        <Link to="/" className="material-icons" style={linkStyle}>
+    <DrawerContainer show={show}>
+      <HomeLink>
+        <NavLink to="/" className="material-icons" onClick={onClose} style={{ fontSize: 22 }}>
           home
-        </Link>
-      </ActiveHome>
+        </NavLink>
+      </HomeLink>
       <Menu>
         <SubMenu>
-          <Link to="/entertain" style={linkStyle}>
-            កម្សាន្ត
-          </Link>
-          <Link to="/lifeandsociety" style={linkStyle}>
-            ជីវិតនិងសង្គម
-          </Link>
-          <Link to="/deals" style={linkStyle}>
-            DEALS
-          </Link>
-          <Link
-            to="#"
-            className="material-icons"
-            style={linkStyle}
-            onClick={() => setHide(!hide)}
-          >
-            more_horiz
-          </Link>
+          <NavLink to="/entertain" onClick={onClose}>កម្សាន្ត</NavLink>
+          <NavLink to="/lifeandsociety" onClick={onClose}>ជីវិតនិងសង្គម</NavLink>
+          <NavLink to="/deals" onClick={onClose}>DEALS</NavLink>
+          <MoreButton onClick={() => setExpanded(!expanded)}>
+            <span className="material-icons" style={{ fontSize: 18 }}>
+              {expanded ? 'expand_less' : 'more_horiz'}
+            </span>
+            បន្ថែម
+          </MoreButton>
         </SubMenu>
         <SubMenu>
-          <Link to="/technology" style={linkStyle}>
-            បច្ចេកវិទ្យា
-          </Link>
-          <Link to="/sport" style={linkStyle}>
-            កីឡា
-          </Link>
-          <Link to="/bacII" style={linkStyle}>
-            បាក់ឌុប២០២១
-          </Link>
-          <ResItem hide={hide}>
-            <ResSubItem>
-              <Link to="/autotalk" style={linkStyle}>
-                AUTOTALK
-              </Link>
-            </ResSubItem>
-            <ResSubItem>
-              <Link to="/healthylife" style={linkStyle}>
-                HEALTHY LIFE
-              </Link>
-            </ResSubItem>
-            <ResSubItem>
-              <Link to="/startingup" style={linkStyle}>
-                STARTING UP
-              </Link>
-            </ResSubItem>
-            <ResSubItem>
-              <Link to="/quiz" style={linkStyle}>
-                QUIZ
-              </Link>
-            </ResSubItem>
-            <ResSubItem>
-              <Link to="/covid19" style={linkStyle}>
-                កូវីត-១៩
-              </Link>
-            </ResSubItem>
-          </ResItem>
+          <NavLink to="/technology" onClick={onClose}>បច្ចេកវិទ្យា</NavLink>
+          <NavLink to="/sport" onClick={onClose}>កីឡា</NavLink>
+          <NavLink to="/bacII" onClick={onClose}>បាក់ឌុប២០២១</NavLink>
+          <ExpandItem hide={!expanded}>
+            <ExpandLink to="/autotalk" onClick={onClose}>AUTOTALK</ExpandLink>
+            <ExpandLink to="/healthylife" onClick={onClose}>HEALTHY LIFE</ExpandLink>
+            <ExpandLink to="/startingup" onClick={onClose}>STARTING UP</ExpandLink>
+            <ExpandLink to="/quiz" onClick={onClose}>QUIZ</ExpandLink>
+            <ExpandLink to="/covid19" onClick={onClose}>កូវីត-១៩</ExpandLink>
+          </ExpandItem>
         </SubMenu>
       </Menu>
-      <FooterDrawer>
-        <img src={FooterLogo} height="20px" alt="sabay footer logo" />
-      </FooterDrawer>
-    </Container>
+      <DrawerFooter>
+        <img src={FooterLogo} height="18px" alt="sabay footer logo" />
+      </DrawerFooter>
+    </DrawerContainer>
   );
 };

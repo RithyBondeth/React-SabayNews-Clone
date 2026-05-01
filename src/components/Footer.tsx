@@ -4,112 +4,130 @@ import FooterLogo from '../assets/logo-images/footer-logo.png';
 import { cooperationIconData, socialIconData } from '../data/FooterData';
 
 const FooterBox = styled.div`
-  background-color: black;
-  margin-top: 20px;
+  background-color: #111;
+  margin-top: 24px;
 `;
 
 const Wrapper = styled.div`
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-between;
-  padding: 20px 0px;
-  @media (max-width: 1200px) {
+  padding: 32px 0px;
+  gap: 24px;
+  @media (max-width: 992px) {
     flex-direction: column;
+    gap: 0;
+    padding: 24px 0px;
   }
 `;
 
-const Container = styled.div<{ padding: string; respon?: string }>`
-  color: #636b6f;
+const Section = styled.div`
+  color: #9aa0a6;
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
   width: 33.33%;
-  padding: ${(prop) => prop.padding};
   font-family: Battambang, Arial, Helvetica, sans-serif;
-  border: 1px solid #eee;
-  @media (max-width: 1200px) {
+  @media (max-width: 992px) {
     width: 100%;
-    align-items: start;
-    padding: 30px 0px;
+    padding: 20px 0px;
+    border-bottom: 1px solid #2a2a2a;
+    &:last-child {
+      border-bottom: none;
+    }
   }
-  @media (max-width: 880px) {
+  @media (max-width: 576px) {
     align-items: center;
     text-align: center;
-    display: ${(prop) => prop.respon === 'respon' && 'none'};
   }
 `;
 
-const ImageBox = styled.div`
+const IconRow = styled.div`
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 4px;
 `;
 
-const ImageBoxItem = styled.img`
-  height: 30px;
-  padding: 0px 5px;
+const IconImg = styled.img`
+  height: 28px;
+  @media (max-width: 576px) {
+    height: 24px;
+  }
 `;
 
 const Text = styled.p`
-  font-size: 14px;
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.6;
   font-family: Battambang, Arial, Helvetica, sans-serif;
 `;
 
-const Title = styled.h4`
-  font-size: 20px;
+const SectionTitle = styled.h4`
+  font-size: 17px;
+  color: #fff;
+  margin: 0 0 4px;
 `;
 
 const SubText = styled.p`
-  margin: 0px;
+  margin: 0;
   font-family: Battambang, Arial, Helvetica, sans-serif;
-  font-size: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+`;
+
+const Divider = styled.div`
+  width: 100%;
+  border-top: 1px solid #2a2a2a;
+  padding-top: 12px;
+  margin-top: 4px;
 `;
 
 export const Footer: React.FC = () => {
   return (
     <FooterBox>
       <Wrapper className="container">
-        <Container padding="15px">
+        <Section>
           <img
             src={FooterLogo}
-            height="80px"
-            style={{ padding: '0px 10px 20px 0px' }}
+            height="70px"
             alt="sabay footer logo"
           />
           <Text>រក្សា​សិទ្ធិ​គ្រប់​យ៉ាង​ដោយ​ Sabay ឆ្នាំ​២០១៦</Text>
           <Text>គោលការណ៍​ភាព​ឯកជន | Privacy Policy</Text>
-          <div>
-            <SubText>អាសយដ្ឋាន</SubText>
-            <SubText>អគារ​លេខ ៣០៨ មហាវិថីព្រះមុន្នីវង្ស</SubText>
-            <SubText>សង្កាត់បឹងរាំង ខណ្ឌដូនពេញ</SubText>
-          </div>
-        </Container>
-        <Container padding="15px 40px 15px 15px" respon="respon">
-          <Title>អំពីយើង</Title>
+          <Divider />
+          <SubText>អាសយដ្ឋាន</SubText>
+          <SubText>អគារ​លេខ ៣០៨ មហាវិថីព្រះមុន្នីវង្ស</SubText>
+          <SubText>សង្កាត់បឹងរាំង ខណ្ឌដូនពេញ</SubText>
+        </Section>
+
+        <Section>
+          <SectionTitle>អំពីយើង</SectionTitle>
           <Text>
             Sabay Digital Corporation ជា​ក្រុមហ៊ុន​ព័ត៌មាន​ឌីជីថល
             និង​កម្សាន្ត​ឈាន​មុខ​គេ​នៅ​កម្ពុជា។ ព័ត៌មាន​បន្ថែម
           </Text>
           <Text>ផលិត​ផល​ និង​ សេវាកម្ម របស់ Sabay</Text>
-          <ImageBox>
+          <IconRow>
             {cooperationIconData.map((e) => (
-              <ImageBoxItem key={e.alt} src={e.icon} alt={e.alt} />
+              <IconImg key={e.alt} src={e.icon} alt={e.alt} />
             ))}
-          </ImageBox>
-        </Container>
-        <Container padding="15px 15px 15px 80px">
-          <Title>ជួបគ្នានៅបណ្តាញសង្គម</Title>
-          <ImageBox style={{ padding: '10px 0px 20px 0px' }}>
+          </IconRow>
+        </Section>
+
+        <Section>
+          <SectionTitle>ជួបគ្នានៅបណ្តាញសង្គម</SectionTitle>
+          <IconRow>
             {socialIconData.map((e) => (
-              <ImageBoxItem key={e.alt} src={e.icon} alt={e.alt} />
+              <IconImg key={e.alt} src={e.icon} alt={e.alt} style={{ height: 36 }} />
             ))}
-          </ImageBox>
-          <div>
-            <SubText>ទំនាក់ទំនង</SubText>
-            <SubText>info@sabay.com</SubText>
-            <SubText>023 228 000</SubText>
-          </div>
-        </Container>
+          </IconRow>
+          <Divider />
+          <SubText>ទំនាក់ទំនង</SubText>
+          <SubText>info@sabay.com</SubText>
+          <SubText>023 228 000</SubText>
+        </Section>
       </Wrapper>
     </FooterBox>
   );

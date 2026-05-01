@@ -10,12 +10,13 @@ import { CategoryItem, MainCategoryItem } from '../types';
 const Container = styled.div`
   display: flex;
   margin-top: 15px;
+  gap: 0;
 `;
 
 const LeftBox = styled.div`
   width: 75%;
-  box-shadow: 1px 2px 2px 1px rgb(0 0 0 / 20%);
-  @media (max-width: 995px) {
+  box-shadow: 1px 2px 2px 1px rgb(0 0 0 / 15%);
+  @media (max-width: 992px) {
     width: 100%;
   }
 `;
@@ -23,7 +24,7 @@ const LeftBox = styled.div`
 const RightBox = styled.div`
   width: 25%;
   padding: 5px 20px;
-  @media (max-width: 995px) {
+  @media (max-width: 992px) {
     display: none;
   }
 `;
@@ -35,23 +36,22 @@ const HeaderBox = styled.div<{ color: string }>`
 `;
 
 const BodyBox = styled.div`
-  padding: 10px 20px;
+  padding: 16px 20px;
+  @media (max-width: 576px) {
+    padding: 12px;
+  }
 `;
 
 const MainPoster = styled.div`
   display: flex;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
+  gap: 12px;
   width: 100%;
   @media (max-width: 768px) {
     flex-direction: column;
+    gap: 16px;
   }
-`;
-
-const SubPoster = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 20px 0px;
 `;
 
 const MainPosterBox = styled.div`
@@ -63,51 +63,80 @@ const MainPosterBox = styled.div`
 
 const MainImageBox = styled.div`
   height: 200px;
+  overflow: hidden;
+  @media (max-width: 576px) {
+    height: 170px;
+  }
 `;
 
 const MainTitleBox = styled.div`
   padding: 10px;
+  font-size: 15px;
+  line-height: 1.5;
+  @media (max-width: 576px) {
+    font-size: 14px;
+    padding: 8px;
+  }
+`;
+
+const SubPoster = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0px;
+  gap: 4px;
 `;
 
 const SubPosterBox = styled.div`
   display: flex;
-  align-items: center;
+  align-items: stretch;
   width: 100%;
-  margin: 5px 0px;
+  margin: 4px 0px;
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 8px;
   @media (max-width: 768px) {
     flex-direction: column;
-    margin: 20px 0px;
+    margin: 12px 0px;
+    padding-bottom: 12px;
   }
 `;
 
 const SubImageBox = styled.div<{ bg: string }>`
-  height: 150px;
-  width: 30%;
+  height: 130px;
+  width: 28%;
+  flex-shrink: 0;
   background-image: url(${(prop) => prop.bg});
   background-size: cover;
   background-position: center;
   @media (max-width: 768px) {
     width: 100%;
-    height: 300px;
+    height: 200px;
+  }
+  @media (max-width: 576px) {
+    height: 170px;
   }
 `;
 
 const SubTitleBox = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: start;
   justify-content: space-around;
-  height: 150px;
-  width: 70%;
-  padding: 0px 20px;
+  min-height: 130px;
+  width: 72%;
+  padding: 8px 16px;
+  gap: 6px;
   @media (max-width: 768px) {
     width: 100%;
-    padding: 5px;
+    min-height: auto;
+    padding: 12px;
   }
 `;
 
 const Title = styled.div<{ fontSize: string }>`
   font-size: ${(prop) => prop.fontSize};
+  line-height: 1.5;
+  @media (max-width: 576px) {
+    font-size: ${(prop) => (prop.fontSize === '17px' ? '15px' : '12px')};
+  }
 `;
 
 const DateLabel = styled.div`
@@ -115,7 +144,9 @@ const DateLabel = styled.div`
   display: flex;
   align-items: center;
   font-size: 12px;
-  border-bottom: 1px solid grey;
+  color: #888;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #eee;
 `;
 
 const AdsBox = styled.img<{ size: string }>`
@@ -125,12 +156,18 @@ const AdsBox = styled.img<{ size: string }>`
 `;
 
 const Poster = styled.div<{ bg: string }>`
-  height: 300px;
+  height: 280px;
   width: 100%;
   background-image: url(${(prop) => prop.bg});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  @media (max-width: 768px) {
+    height: 200px;
+  }
+  @media (max-width: 576px) {
+    height: 160px;
+  }
 `;
 
 interface DetailCategoryProps {
@@ -163,7 +200,7 @@ export const DetailCategory: React.FC<DetailCategoryProps> = ({
               {mainCategory.map((e) => (
                 <MainPosterBox key={e.title}>
                   <MainImageBox>
-                    <img src={e.image} height="100%" width="100%" alt="news poster" />
+                    <img src={e.image} height="100%" width="100%" alt="news poster" style={{ objectFit: 'cover' }} />
                   </MainImageBox>
                   <MainTitleBox>{e.title}</MainTitleBox>
                 </MainPosterBox>
