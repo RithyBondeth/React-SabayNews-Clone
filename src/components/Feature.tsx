@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-import { featureData } from '../data/FeatureData';
-import { Badge } from './Badge';
-import Ads1 from '../assets/ads-images/home-ads/home-ads1.jpeg';
-import Ads2 from '../assets/ads-images/home-ads/home-ads2.jpeg';
+import React from "react";
+import styled from "styled-components";
+import { featureData } from "../data/FeatureData";
+import { Badge } from "./Badge";
+import Ads1 from "../assets/ads-images/home-ads/home-ads1.jpeg";
+import Ads2 from "../assets/ads-images/home-ads/home-ads2.jpeg";
 
 const Container = styled.div<{ width: string }>`
   height: 500px;
