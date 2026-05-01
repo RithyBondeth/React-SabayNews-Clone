@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { usePageTitle } from '../hooks/usePageTitle';
 import { Feature } from '../components/Feature';
 import { PhoneFeature } from '../components/PhoneFeature';
 import { Category } from '../components/Category';
@@ -10,6 +11,7 @@ import { dealsCategoryData } from '../data/category-data/dealsCategoryData';
 import { mainCategoryData } from '../data/category-data/mainCategoryData';
 
 export const HomePage: React.FC = () => {
+  usePageTitle('ទំព័រដើម');
   const [phone, setPhone] = useState<boolean>(false);
 
   useEffect(() => {

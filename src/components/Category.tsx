@@ -4,14 +4,8 @@ import { Badge } from './Badge';
 import { CategoryItem, MainCategoryItem } from '../types';
 
 const Container = styled.div`
-  height: 400px;
   padding-top: 10px;
-  @media (max-width: 990px) {
-    height: 800px;
-  }
-  @media (max-width: 575px) {
-    height: 250px;
-  }
+  margin-bottom: 16px;
 `;
 
 const HeaderBox = styled.div<{ color: string }>`
@@ -21,93 +15,90 @@ const HeaderBox = styled.div<{ color: string }>`
 `;
 
 const BodyBox = styled.div`
-  height: 85%;
   display: flex;
-  box-shadow: 1px 2px 2px 1px rgb(0 0 0 / 20%);
+  min-height: 320px;
+  box-shadow: 1px 2px 2px 1px rgb(0 0 0 / 15%);
+  @media (max-width: 768px) {
+    flex-direction: column;
+    min-height: auto;
+  }
 `;
 
 const MainPoster = styled.div`
-  height: 100%;
-  width: 40%;
-  @media (max-width: 990px) {
-    height: 50%;
-    width: 50%;
-    padding: 5px;
+  width: 35%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 220px;
   }
-  @media (max-width: 575px) {
-    display: none;
+  @media (max-width: 576px) {
+    height: 180px;
   }
 `;
 
 const ImageBox = styled.div<{ bg: string }>`
-  height: 65%;
-  width: 100%;
+  flex: 1;
   background-image: url(${(prop) => prop.bg});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  transition: transform 0.25s ease;
   &:hover {
-    transform: scale(0.95);
-    transition: 0.25s;
+    transform: scale(0.97);
   }
-  &:not(:hover) {
-    transition: 0.25s;
-  }
-  @media (max-width: 990px) {
-    padding: 30px 0px;
-  }
-  @media (max-width: 575px) {
-    height: 50%;
-    width: 150px;
+  @media (max-width: 768px) {
+    height: 65%;
   }
 `;
 
 const TitleBox = styled.div<{ color: string; fontColor: string; fontSize: string }>`
-  height: 35%;
-  width: 100%;
   padding: 10px;
   display: flex;
   align-items: center;
+  justify-content: center;
   text-align: center;
   color: ${(prop) => prop.fontColor};
   background-color: ${(prop) => prop.color};
   font-size: ${(prop) => prop.fontSize};
+  line-height: 1.5;
+  min-height: 60px;
   overflow: hidden;
-  font-family: Battambang, Arial, Helvetica, sans-serif;
-  @media (max-width: 575px) {
-    height: 50%;
-    padding: 0px 5px;
+  @media (max-width: 768px) {
+    min-height: 50px;
+    font-size: ${(prop) => prop.fontSize === '20px' ? '16px' : prop.fontSize} !important;
+  }
+  @media (max-width: 576px) {
+    font-size: ${(prop) => prop.fontSize === '20px' ? '14px' : '10px'} !important;
+    min-height: 44px;
+    padding: 6px 8px;
   }
 `;
 
 const SubPoster = styled.div`
-  height: 100%;
-  width: 65%;
+  flex: 1;
   display: flex;
   flex-wrap: wrap;
-  @media (max-width: 990px) {
-    height: 100%;
-    width: 50%;
-    padding: 5px;
-  }
-  @media (max-width: 575px) {
+  align-content: flex-start;
+  @media (max-width: 768px) {
     width: 100%;
-    height: 100%;
-    flex-wrap: nowrap;
-    overflow-y: auto;
   }
 `;
 
 const SubPosterBox = styled.div`
-  height: 50%;
+  height: 160px;
   width: 25%;
-  padding: 5px;
-  @media (max-width: 990px) {
-    height: 25%;
-    width: 50%;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 768px) {
+    width: 25%;
+    height: 150px;
   }
-  @media (max-width: 575px) {
-    height: 100%;
+  @media (max-width: 576px) {
+    width: 50%;
+    height: 140px;
   }
 `;
 

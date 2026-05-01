@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs -I{} sh -c 'echo \"=== {} ===\" && cat \"{}\"')",
+      "Bash(git rm *)",
+      "Bash(npm install *)",
+      "Bash(git checkout *)",
+      "Bash(git commit --amend -m ' *)",
+      "Bash(gh pr *)",
+      "Bash(git push *)",
+      "Bash(git -C /Users/bondeth/Projects/React-SabayNews-Clone status)",
+      "Bash(git -C /Users/bondeth/Projects/React-SabayNews-Clone branch)",
+      "Bash(git -C /Users/bondeth/Projects/React-SabayNews-Clone worktree remove .claude/worktrees/condescending-gagarin-043d90 --force)",
+      "Bash(git -C /Users/bondeth/Projects/React-SabayNews-Clone checkout feat/typescript-migration)",
+      "Read(//Users/bondeth/Projects/React-SabayNews-Clone/src/**)",
+      "Read(//Users/bondeth/Projects/React-SabayNews-Clone/src/components/**)",
+      "Bash(git -C /Users/bondeth/Projects/React-SabayNews-Clone rm -r --cached node_modules/ build/ .DS_Store)",
+      "Bash(git -C /Users/bondeth/Projects/React-SabayNews-Clone add .gitignore)",
+      "Bash(git -C /Users/bondeth/Projects/React-SabayNews-Clone status --short)"
+    ]
+  }
+}
