@@ -63,7 +63,6 @@ const TitleBox = styled.div<{ color: string; fontColor: string; fontSize: string
   background-color: ${(prop) => prop.color};
   font-size: ${(prop) => prop.fontSize};
   line-height: 1.5;
-  font-family: Battambang, Arial, Helvetica, sans-serif;
   min-height: 60px;
   overflow: hidden;
   @media (max-width: 768px) {

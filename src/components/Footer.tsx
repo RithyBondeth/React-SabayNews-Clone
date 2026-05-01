@@ -28,7 +28,6 @@ const Section = styled.div`
   align-items: flex-start;
   gap: 10px;
   width: 33.33%;
-  font-family: Battambang, Arial, Helvetica, sans-serif;
   @media (max-width: 992px) {
     width: 100%;
     padding: 20px 0px;
@@ -61,7 +60,6 @@ const Text = styled.p`
   font-size: 13px;
   margin: 0;
   line-height: 1.6;
-  font-family: Battambang, Arial, Helvetica, sans-serif;
 `;
 
 const SectionTitle = styled.h4`
@@ -72,7 +70,6 @@ const SectionTitle = styled.h4`
 
 const SubText = styled.p`
   margin: 0;
-  font-family: Battambang, Arial, Helvetica, sans-serif;
   font-size: 13px;
   line-height: 1.6;
 `;

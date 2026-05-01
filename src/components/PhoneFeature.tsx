@@ -44,7 +44,6 @@ const Title = styled.div`
   padding: 12px 56px 14px;
   font-size: 14px;
   line-height: 1.5;
-  font-family: Battambang, Arial, Helvetica, sans-serif;
   @media (max-width: 576px) {
     font-size: 13px;
     padding: 10px 50px 12px;
