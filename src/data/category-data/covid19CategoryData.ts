@@ -1,4 +1,4 @@
-import { CategoryItem, MainCategoryItem } from '../../types';
+import { CategoryItem } from '../../types';
 import Img1 from '../../assets/category-images/covid19-category/img1.jpeg'
 import Img2 from '../../assets/category-images/covid19-category/img2.jpeg'
 import Img3 from '../../assets/category-images/covid19-category/img3.jpeg'
@@ -11,7 +11,7 @@ import Img8 from '../../assets/category-images/covid19-category/img8.jpeg'
 import MainImg1 from '../../assets/category-images/main-category/main-covid19/main-img1.png'
 import MainImg2 from '../../assets/category-images/main-category/main-covid19/main-img2.png'
 
-export const covid19CategoryData = [
+export const covid19CategoryData: CategoryItem[] = [
     {
         image: Img1,
         title: "ចេញ១រោងដំបូងជាមួយនាយពាក់មី​​ ទៅកំពង់ចាម លោក ហេរ៉ូ ស្រង៉ាកចិត្ដខ្លាំងណាស់!",
@@ -70,7 +70,7 @@ export const covid19CategoryData = [
     },
 ];
 
-export const mainCovid19CategoryData = [
+export const mainCovid19CategoryData: CategoryItem[] = [
     {
         image: MainImg1,
         title: "ក្រសួងសុខាភិបាល សម្រេចអនុញ្ញាតឲ្យប្រើប្រាស់វ៉ាក់សាំងឈ្មោះ COVAXIN",
