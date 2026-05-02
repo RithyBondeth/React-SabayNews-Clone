@@ -1,4 +1,4 @@
-import { CategoryItem, MainCategoryItem } from '../../types';
+import { CategoryItem } from '../../types';
 import Img1 from "../../assets/category-images/covid19-category/img1.jpeg"
 import Img2 from "../../assets/category-images/covid19-category/img2.jpeg"
 import Img3 from "../../assets/category-images/covid19-category/img3.jpeg"
