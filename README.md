@@ -10,6 +10,24 @@
 
 </div>
 
+<!-- product-images:start -->
+
+## Product preview
+
+<p align="center">
+  <img src="docs/product-images/hero.png" alt="Sabay News Clone — A front-end practice build of Sabay-inspired editorial pages." width="100%">
+</p>
+
+<table>
+<tr>
+  <td width="33%"><img src="docs/product-images/feature-01.png" alt="A grid full of stories. — Featured news, category sections, and Khmer typography share a dense editorial layout." width="100%"></td>
+  <td width="33%"><img src="docs/product-images/feature-02.png" alt="Navigate by what interests you. — Reusable category layouts connect the home page with topical news sections." width="100%"></td>
+  <td width="33%"><img src="docs/product-images/feature-03.png" alt="Desktop rhythm. Mobile clarity. — Separate desktop and phone navigation adapt the portal to its viewport." width="100%"></td>
+</tr>
+</table>
+
+<!-- product-images:end -->
+
 ---
 
 ## Overview
@@ -28,12 +46,12 @@ React Sabay News Clone recreates the layout of [Sabay News](https://news.sabay.c
 
 ## Tech Stack
 
-| Area | Technology |
-| --- | --- |
-| UI | React 18, React Router 6 |
-| Language | TypeScript |
-| Styling | Styled Components, MUI (Emotion) |
-| Build | Create React App |
+| Area     | Technology                       |
+| -------- | -------------------------------- |
+| UI       | React 18, React Router 6         |
+| Language | TypeScript                       |
+| Styling  | Styled Components, MUI (Emotion) |
+| Build    | Create React App                 |
 
 ## Getting Started
 
@@ -54,11 +72,11 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ### Scripts
 
-| Command | Description |
-| --- | --- |
-| `npm start` | Start the development server |
-| `npm run build` | Create a production build |
-| `npm test` | Run tests |
+| Command         | Description                  |
+| --------------- | ---------------------------- |
+| `npm start`     | Start the development server |
+| `npm run build` | Create a production build    |
+| `npm test`      | Run tests                    |
 
 ## Project Structure
 
